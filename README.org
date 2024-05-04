@@ -1,0 +1,7 @@
+#+title: Slither
+
+FastAPI is a popular solution for building APIs in Python, especially when
+wrapping the creativity of data scientists.
+
+To get started, we'll setup a Python environment with Nix and install a minimal
+set of FastAPI dependencies using uv.
