@@ -4,14 +4,49 @@ FastAPI is a popular solution for building APIs in Python, especially when
 wrapping the creativity of data scientists.
 
 * Contents                                                              :TOC:
-- [[#dependencies][Dependencies]]
+- [[#whats-in-the-box][What's in the box?]]
+  - [[#bin-scripts][Bin scripts]]
+  - [[#api][API]]
+  - [[#dependencies][Dependencies]]
 - [[#development][Development]]
-- [[#tests][Tests]]
+  - [[#installing-dependencies][Installing dependencies]]
+  - [[#running-the-api][Running the API]]
+  - [[#running-tests][Running tests]]
 
-* Dependencies
-To get started, we'll setup a Python environment with Nix and install a minimal
-set of FastAPI dependencies using uv.
+* What's in the box?
+** Bin scripts
+- =bin/setup=: Prepare your local environment for work
+- =bin/dev=: Start a prepared development environment
+- =bin/fmt=: Automatically format code
+- =bin/test=: Run tests
 
+** API
+We have a set of routers with a simple test using =pytest=, LSP support via
+=pyright=, and some minimal validation using Pydantic. Next on the list would be
+adding dependency injection to explore reproducibility of expensive underlying
+models one might want to wrap.
+
+#+begin_src sh :results output verbatim :exports both
+tree app -I __pycache__
+#+end_src
+
+#+results:
+#+begin_example
+app
+├── __init__.py
+├── config.py
+├── main.py
+├── models.py
+├── routers
+│   ├── __init__.py
+│   └── farms.py
+├── test_main.py
+└── test_models.py
+
+2 directories, 8 files
+#+end_example
+
+** Dependencies
 #+begin_src sh :results output verbatim
 poetry show
 #+end_src
@@ -63,8 +98,16 @@ uvloop            0.19.0   Fast implementation of asyncio event loop on top...
 watchfiles        0.21.0   Simple, modern and high performance file watchin...
 websockets        12.0     An implementation of the WebSocket Protocol (RFC...
 #+end_example
-
 * Development
+** Installing dependencies
+#+begin_src sh :eval never
+# If you're using Nix...
+nix develop --override-input devenv-root "file+file://"<(printf %s "$PWD")
+
+poetry install
+#+end_src
+
+** Running the API
 With Nix, one can start a development process via =devenv=.
 
 #+begin_src sh :eval never
@@ -77,7 +120,7 @@ Or start a development FastAPI process like so:
 fastapi dev app/main.py
 #+end_src
 
-* Tests
+** Running tests
 #+begin_src sh :results output verbatim
 pytest
 #+end_src
