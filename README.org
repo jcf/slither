@@ -3,5 +3,96 @@
 FastAPI is a popular solution for building APIs in Python, especially when
 wrapping the creativity of data scientists.
 
+* Contents                                                              :TOC:
+- [[#dependencies][Dependencies]]
+- [[#development][Development]]
+- [[#tests][Tests]]
+
+* Dependencies
 To get started, we'll setup a Python environment with Nix and install a minimal
 set of FastAPI dependencies using uv.
+
+#+begin_src sh :results output verbatim
+poetry show
+#+end_src
+
+#+results:
+#+begin_example
+annotated-types   0.6.0    Reusable constraint types to use with typing.Ann...
+anyio             4.3.0    High level compatibility layer for multiple asyn...
+certifi           2024.2.2 Python package for providing Mozilla's CA Bundle.
+click             8.1.7    Composable command line interface toolkit
+dnspython         2.6.1    DNS toolkit
+email-validator   2.1.1    A robust email address syntax and deliverability...
+fastapi           0.111.0  FastAPI framework, high performance, easy to lea...
+fastapi-cli       0.0.2    Run and manage FastAPI apps from the command lin...
+h11               0.14.0   A pure-Python, bring-your-own-I/O implementation...
+httpcore          1.0.5    A minimal low-level HTTP client.
+httptools         0.6.1    A collection of framework independent HTTP proto...
+httpx             0.27.0   The next generation HTTP client.
+idna              3.7      Internationalized Domain Names in Applications (...
+iniconfig         2.0.0    brain-dead simple config-ini parsing
+isort             5.13.2   A Python utility / library to sort Python imports.
+jinja2            3.1.3    A very fast and expressive template engine.
+markdown-it-py    3.0.0    Python port of markdown-it. Markdown parsing, do...
+markupsafe        2.1.5    Safely add untrusted strings to HTML/XML markup.
+mdurl             0.1.2    Markdown URL utilities
+nodeenv           1.8.0    Node.js virtual environment builder
+orjson            3.10.3   Fast, correct Python JSON library supporting dat...
+packaging         24.0     Core utilities for Python packages
+pluggy            1.5.0    plugin and hook calling mechanisms for python
+pydantic          2.7.1    Data validation using Python type hints
+pydantic-core     2.18.2   Core functionality for Pydantic validation and s...
+pydantic-settings 2.2.1    Settings management using Pydantic
+pygments          2.18.0   Pygments is a syntax highlighting package writte...
+pyright           1.1.361  Command line wrapper for pyright
+pytest            8.2.0    pytest: simple powerful testing with Python
+python-dotenv     1.0.1    Read key-value pairs from a .env file and set th...
+python-multipart  0.0.9    A streaming multipart parser for Python
+pyyaml            6.0.1    YAML parser and emitter for Python
+rich              13.7.1   Render rich text, tables, progress bars, syntax ...
+setuptools        69.5.1   Easily download, build, install, upgrade, and un...
+shellingham       1.5.4    Tool to Detect Surrounding Shell
+sniffio           1.3.1    Sniff out which async library your code is runni...
+starlette         0.37.2   The little ASGI library that shines.
+typer             0.12.3   Typer, build great CLIs. Easy to code. Based on ...
+typing-extensions 4.11.0   Backported and Experimental Type Hints for Pytho...
+ujson             5.9.0    Ultra fast JSON encoder and decoder for Python
+uvicorn           0.29.0   The lightning-fast ASGI server.
+uvloop            0.19.0   Fast implementation of asyncio event loop on top...
+watchfiles        0.21.0   Simple, modern and high performance file watchin...
+websockets        12.0     An implementation of the WebSocket Protocol (RFC...
+#+end_example
+
+* Development
+With Nix, one can start a development process via =devenv=.
+
+#+begin_src sh :eval never
+devenv up
+#+end_src
+
+Or start a development FastAPI process like so:
+
+#+begin_src sh :eval never
+fastapi dev app/main.py
+#+end_src
+
+* Tests
+#+begin_src sh :results output verbatim
+pytest
+#+end_src
+
+#+results:
+#+begin_example
+============================= test session starts ==============================
+platform darwin -- Python 3.11.8, pytest-8.2.0, pluggy-1.5.0
+rootdir: /Users/jcf/code/slither
+configfile: pyproject.toml
+plugins: anyio-4.3.0
+collected 3 items
+
+app/test_main.py .                                                       [ 33%]
+app/test_models.py ..                                                    [100%]
+
+============================== 3 passed in 0.32s ===============================
+#+end_example
