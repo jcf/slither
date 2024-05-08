@@ -39,9 +39,15 @@ services:
         - flake.lock
         - flake.nix
 
+    domains:
+      - slither.byinvetica.co.uk
+
     envVars:
       - key: PYTHON_VERSION
         value: '3.11.8'
 
       - key: POETRY_VERSION
         value: '1.8.2'
+
+      - key: DOMAIN
+        value: slither.byinvetica.co.uk
