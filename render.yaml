@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: web
+    runtime: python
+
+    region: frankfurt
+
+    # See https://render.com/pricing#compute
+    #
+    # | Instance Type | Pricing              | RAM    | CPU |
+    # |---------------+----------------------+--------+-----|
+    # | Free          | $0/month with limits | 512 MB | 0.1 |
+    # | Starter       | $7/month             | 512 MB | 0.5 |
+    # | Standard      | $25/month            | 2 GB   |   1 |
+    # | Pro           | $85/month            | 4 GB   |   2 |
+    # | Pro Plus      | $175/month           | 8 GB   |   4 |
+    # | Pro Max       | $225/month           | 16 GB  |   4 |
+    # | Pro Ultra     | $450/month           | 32 GB  |   8 |
+    plan: free
+
+    # We only want a single instance, but might need to scale in future.
+    #
+    # scaling:
+    #   minInstances: 1
+    #   maxInstances: 1
+    #   targetCPUPercent: 60
+    #   targetMemoryPercent: 60
+
+    autoDeploy: true
+
+    buildCommand: render/build.sh
+    startCommand: render/start.sh
+
+    buildFilter:
+      ignoredPaths:
+        - .editorconfig
+        - .envrc
+        - README.org
+        - flake.lock
+        - flake.nix
