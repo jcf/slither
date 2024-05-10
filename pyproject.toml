@@ -22,6 +22,9 @@ pyright = "^1.1.359"
 httpx = "^0.27.0"
 pytest = "^8.2.0"
 
+[tool.mypy]
+strict = true
+
 [tool.isort]
 profile = "black"
 
