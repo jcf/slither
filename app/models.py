@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field, PositiveInt
 crops = ["barley", "hops", "wheat"]
 
 
-def list_to_regex(strs: list[str]) -> Pattern:
+def list_to_regex(strs: list[str]) -> Pattern[str]:
     return re.compile(f'^({"|".join(strs)})$')
 
 
