@@ -1,11 +1,7 @@
 from fastapi.testclient import TestClient
 
-from .main import app
 
-client = TestClient(app)
-
-
-def test_read_farms():
+def test_read_farms(client: TestClient):
     response = client.get("/farms")
     assert response.status_code == 200
     assert response.json() == [

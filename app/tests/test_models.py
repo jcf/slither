@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from .models import Farm, crops
+from app.models import Farm, crops
 
 
 @pytest.mark.parametrize("crop", crops)
